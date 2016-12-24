@@ -1,0 +1,6 @@
+{
+  "protcol": "https"
+  , "host": "kcuc-web.mybluemix.net"
+  , "port": 443
+  , "debug": false
+}
