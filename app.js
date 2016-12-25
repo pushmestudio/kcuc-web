@@ -3,8 +3,7 @@ const request = require('request-promise');
 const config = require('config');
 const app = express();
 
-const target = config.get('protocol') + '://' + config.get('host') + ':' + config.get('port') + '/kcuc/rest-v1';
-console.log(target);
+const target = config.get('api.protocol') + '://' + config.get('api.host') + ':' + config.get('api.port') + '/kcuc/rest-v1';
 
 app.use('/kcuc', express.static('public'));
 
@@ -24,6 +23,8 @@ app.use('/kcuc/api', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('now listening on the port 3000');
+app.listen(config.get('client.port'), () => {
+  console.log('api request target is ' + target);
+  console.log('debug mode is ' + config.get('debug'));
+  console.log('now listening on the port ' + config.get('client.port'));
 });
