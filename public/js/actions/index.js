@@ -25,14 +25,12 @@ export const fetchPages = (userId) => {
 
     let requestPagesParam = {user: userId};
     const kcucPagesApi = '/api/check/pages';
-    $('#loader').removeClass('hide'); // ローディングアイコン表示
+    $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendGet(kcucPagesApi, requestPagesParam).then((res) => {
       console.dir(res);
 
       if (res.code) {
-        console.log('aa');
-        console.log(res.code);
         dispatch(errorFetchPages());
       } else {
         dispatch(successFetchPages(res));
@@ -40,7 +38,7 @@ export const fetchPages = (userId) => {
     }).fail(() => {
       dispatch(errorFetchPages());
     }).always(() => {
-      $('#loader').addClass('hide'); // ローディングアイコン非表示
+      $('#loader').addClass('hidden'); // ローディングアイコン非表示
     });
   };
 };
@@ -70,7 +68,7 @@ export const fetchUsers = (page) => {
 
     let requestUsersParam = {href: page};
     const kcucUsersApi = '/api/check/users';
-    $('#loader').removeClass('hide'); // ローディングアイコン表示
+    $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendGet(kcucUsersApi, requestUsersParam).then((res) => {
       console.dir(res);
@@ -82,7 +80,7 @@ export const fetchUsers = (page) => {
     }).fail(() => {
       dispatch(errorFetchUsers());
     }).always(() => {
-      $('#loader').addClass('hide'); // ローディングアイコン非表示
+      $('#loader').addClass('hidden'); // ローディングアイコン非表示
     });
   };
 };
@@ -112,7 +110,7 @@ export const registerPage = (user, page) => {
 
     let requestRegisterParam = {user: user, href: page};
     const kcucUsersApi = '/api/check/pages';
-    $('#loader').removeClass('hide'); // ローディングアイコン表示
+    $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendPost(kcucUsersApi, requestRegisterParam).then((res) => {
       console.dir(res);
@@ -124,7 +122,7 @@ export const registerPage = (user, page) => {
     }).fail(() => {
       dispatch(errorRegisterPage());
     }).always(() => {
-      $('#loader').addClass('hide'); // ローディングアイコン非表示
+      $('#loader').addClass('hidden'); // ローディングアイコン非表示
     });
   };
 };
@@ -155,7 +153,7 @@ export const cancelPage = (user, page) => {
 
     let requestCancelParam = {user: user, href: page};
     const kcucUsersApi = '/api/check/pages';
-    $('#loader').removeClass('hide'); // ローディングアイコン表示
+    $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendPost(kcucUsersApi, requestCancelParam).then((res) => {
       console.dir(res);
@@ -167,7 +165,7 @@ export const cancelPage = (user, page) => {
     }).fail(() => {
       dispatch(errorCancelPage());
     }).always(() => {
-      $('#loader').addClass('hide'); // ローディングアイコン非表示
+      $('#loader').addClass('hidden'); // ローディングアイコン非表示
     });
   };
 };

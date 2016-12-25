@@ -9,9 +9,10 @@
 - `yarn build`：文法チェック＆JavaScriptのビルド・依存性解決＆JsDocの出力
 - `yarn lint`：JavaScript文法チェック
 - `yarn webpack`：JavaScriptのビルドのみ(文法チェックを割愛、開発時のみの想定)
-- `yarn start`：JavaScriptのビルド＆ローカルサーバー起動
+- `node app.js`：ローカルサーバー起動
 
-ReduxのサンプルTodoアプリを一部拡張したものが用意してある。
+環境切り替えには`node-config`を使用している。configディレクトリ以下にある`default.json`の値を読めるようにしているが、`export NODE_ENV=dev; node app.js`のようにすると代わりに`dev.json`に書いた内容を読み込むようになるので、この方法によって環境を切り替えること。なお、`config/dev.json`はトラッキング対象外にしているので、個人の環境の内容などを記載して使用してOK。
+
 
 ## Yarnについて
 ### Yarnでできること(vs npm)
@@ -71,49 +72,6 @@ Lintについては、`yarn build`時に自動でチェックし、文法チェ�
 
 Webpackについては、JSのエントリーポイントを増やす場合に`webpack.config.js`を編集する必要あり。それ以外の場合は、現在の構成のまま変更不要。ビルドが完了すると、`build`ディレクトリ以下に、関連したJSファイルをすべて一箇所にまとめたファイルが出力されるので、htmlではこちらを読み込んで使用する。
 
-## React/Reduxについて
-実装に入る前に基本概念を理解する必要あり。基本的に公式を読みつつ、不明点についてブログ記事等を参照する形が良い。 http://redux.js.org/docs/basics/
-
-Reduxを利用する上で理解すべき概念は次の通り。
-
-- `view`:要は見た目、イベントバインディングを含む
-    - `component`:見える画面を部分部分で切り出したパーツのイメージ、画面に表示を追加するならこれを追加するイメージ。また、各componentはcontainerから受け取る値を事前にPropsとして持っておき、stateから取り出した値などを格納・自身の処理に使う
-
-    - `container`:State(アプリの状態）をstoreから受け取ってcomponentに渡したり、実際にイベントが呼ばれた場合にaction createrを呼ぶ。actionと1対1の関係。componentとは主従(親子)関係は特にない。
-
-
-- `action`:JSオブジェクトとして、Key:Valueで実際の処理内容を判断させるための値を記載する。処理内容そのものはReducerにて書く。
-    - `action creater`:ContainerからDispatch(actionをreducerに渡す行為)するために呼び出す関数で、戻り値がactionになっている
-
-
-- `store`:アプリで1つだけ持つ、アプリの状態管理箇所。受け取ったactionと現在のState(アプリの状態）を元に次のStateをViewに返す
-    - `reducer`:処理の核となる、DispatchによってViewからActionを受け取り、Stateを更新する
-
-    - `provider`:Storeとアプリを紐づける役割
-
-    - `middleware`:reducerの処理に必要となるモジュールの読み込み(例：非同期通信用のモジュールredux-thunk)などを行う
-
-
-### 実装時に追加する対象
-下記それぞれ追記実施後にビルドが必要になる。
-
-1. パーツを足すだけの時
-    - componentsに追加対象のファイルを追加
-    - viewを統括している`components/App`に呼び出し対象として記載を追記
-
-2. アクションを足す時
-    - containersに追加対象のファイルを追加
-    - viewを統括している`components/App`に呼び出し対象として記載を追記
-    - `actions/index`にアクション名やパラメータを追記
-    - reducersにアクション名などに対応したファイルを追加
-    - reducerやmiddlewareを統括している`reducers/index`に追加対象のreducerを追記
-
-3. Stateの値も使用して画面描画する時
-    - reducerにviewで使用するStateをreturnさせるように追記
-    - Stateを利用するComponent内で`Proptypes`の設定を追記
-    - container内の`connect`処理(storeの値を読むためのもの)において、stateをcomponentのPropに格納するための処理を追記
-    - (要追加調査)Propで受け取った値を、なにかをトリガーにしてRenderする処理が必要(Renderしないと、値自体は持っているが画面には反映されない状態になる)
-
 ## 新たなJSライブラリを使用する際の手順
 
 1. `webapp`ディレクトリ上にて`yarn add XXX` または `yarn add XXX --dev`(`--dev`は開発時のみ使用することの明示)
@@ -123,13 +81,3 @@ Reduxを利用する上で理解すべき概念は次の通り。
 2. 使用したいJS上にて`import`で当該ライブラリを読み込み
 
     `{}`付きのimportは、import元(from)から特定のオブジェクトのみをimportするもの。また、`yarn.lock`ファイルは、各開発者間の`node_modules`のバージョン差異をなくすために必要となるものなので、バージョン管理対象とすること。
-
-## 参考リンク
-
-* [Introduction · Redux](http://redux.js.org/docs/introduction/) 利用する上では必読。また、Examplesとして公開されている`Shopping Cart`は今後の拡張において重要度が高くなりそう。
-* [ReduxのExampleを徹底図解 | 人生と仕事を楽しむブログ](http://blog.andgenie.jp/articles/1021) Reduxのサンプルアプリについて日本語で解説していてわかりやすい
-* [André Staltz - Unidirectional User Interface Architectures](http://staltz.com/unidirectional-user-interface-architectures.html) 複数の記事で参照元となっている
-* [React-Redux をわかりやすく解説しつつ実践的に一部実装してみる - anti-good.](http://ma3tk.hateblo.jp/entry/2016/06/20/182232) 情報の正しさという点では怪しいところもあるものの、理解の助けにはなりそう。
-
-
-`export NODE_ENV=production; node app.js`
