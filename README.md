@@ -1,14 +1,14 @@
 # クライアントサイドセットアップ
 
-* Requirement: Yarn導入, NodeJS導入
-* Recommendation: Atom + パッケージ2種(linter by atom-community, linter-eslint by AtomLinter)
+* Requirement: NodeJS導入
+* Recommendation: Yarn導入, Atom + パッケージ2種(linter by atom-community, linter-eslint by AtomLinter)
 
-`webapp`ディレクトリにて`yarn install`。
+`webapp`ディレクトリにて`yarn install`(Yarn未導入環境では`npm install`)。
 現時点では次のコマンドを用意している。
 
-- `yarn build`：文法チェック＆JavaScriptのビルド・依存性解決＆JsDocの出力
-- `yarn lint`：JavaScript文法チェック
-- `yarn webpack`：JavaScriptのビルドのみ(文法チェックを割愛、開発時のみの想定)
+- `yarn build`(or `npm run build`)：文法チェック＆JavaScriptのビルド・依存性解決＆JsDocの出力
+- `yarn lint`(or `npm run lint`)：JavaScript文法チェック
+- `yarn webpack`(or `npm run webpack`)：JavaScriptのビルドのみ(文法チェックを割愛、開発時のみの想定)
 - `node app.js`：ローカルサーバー起動
 
 環境切り替えには`node-config`を使用している。configディレクトリ以下にある`default.json`の値を読めるようにしているが、`export NODE_ENV=dev; node app.js`のようにすると代わりに`dev.json`に書いた内容を読み込むようになるので、この方法によって環境を切り替えること。なお、`config/dev.json`はトラッキング対象外にしているので、個人の環境の内容などを記載して使用してOK。
