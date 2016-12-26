@@ -8,7 +8,7 @@ require('dotenv').config({silent: true}); // もしなかったとしてもエ�
 const apiProtocol = process.env.API_PROTOCOL;
 const apiHost = process.env.API_HOST;
 const apiPort = process.env.API_PORT;
-const clientPort = process.env.CLIENT_PORT;
+const clientPort = process.env.VCAP_APP_PORT || process.env.CLIENT_PORT || 3000;
 const debugMode = process.env.DEBUG;
 
 const target = apiProtocol + '://' + apiHost + ':' + apiPort + '/kcuc/rest-v1';
