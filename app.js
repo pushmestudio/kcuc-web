@@ -8,7 +8,7 @@ require('dotenv').config({silent: true}); // もしなかったとしてもエ�
 const apiProtocol = process.env.API_PROTOCOL;
 const apiHost = process.env.API_HOST;
 const apiPort = process.env.API_PORT;
-const clientPort = process.env.VCAP_APP_PORT || process.env.CLIENT_PORT || 3000;
+const clientPort = process.env.CLIENT_PORT;
 const debugMode = process.env.DEBUG;
 
 const target = apiProtocol + '://' + apiHost + ':' + apiPort + '/kcuc/rest-v1';
@@ -31,14 +31,8 @@ app.use('/kcuc/api', (req, res) => {
   });
 });
 
-// cfenv provides access to your Cloud Foundry environment
-// for more info, see: https://www.npmjs.com/package/cfenv
-var cfenv = require('cfenv');
-// get the app environment from Cloud Foundry
-var appEnv = cfenv.getAppEnv();
-
-// start server on the specified port and binding host
-app.listen(appEnv.port, '0.0.0.0', function() {
-  // print a message when the server starts listening
-  console.log('server starting on ' + appEnv.url);
+app.listen(3000, '0.0.0.0', () => {
+  console.log('api request target is ' + target);
+  console.log('debug mode is ' + debugMode);
+  console.log('now listening on the port ' + 3000);
 });
