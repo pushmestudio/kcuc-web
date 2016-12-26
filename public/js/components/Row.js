@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ModalAlert from './ModalAlert';
+import Logger from '../utils/Logger';
 
 // Row component
 class Row extends React.Component {
   constructor(props) {
     super(props);
+    this.logger = new Logger();
   }
 
   getEachRow(rowType) {
@@ -26,14 +28,14 @@ class Row extends React.Component {
   }
 
   render() {
-    console.log('Row is rendered');
-    console.dir(this.props);
+    this.logger.log('Row is rendered');
+    this.logger.dir(this.props);
     return this.getEachRow(this.props.type);
   }
 
   // 値の変更を検知して更新
   handleChange() {
-    console.log('value is updated');
+    this.logger.log('value is updated');
   }
 
   // チェックON/OFF

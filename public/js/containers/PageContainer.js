@@ -1,28 +1,33 @@
 import { connect } from 'react-redux';
 import { fetchPages, registerPage, cancelPage } from '../actions';
 import PageTable from '../components/PageTable';
+import Logger from '../utils/Logger';
 
 const mapStateToProps = (state) => {
-  console.log('container state:');
-  console.dir(state);
+  let logger = new Logger();
+
+  logger.log('container state:');
+  logger.dir(state);
   return {
-    headings: state.kcPage.headings
-    , results: state.kcPage.pages
-    , title: state.kcPage.title
-    , type: state.kcPage.type
+    headings: state.kcPage.headings,
+    results: state.kcPage.pages,
+    title: state.kcPage.title,
+    type: state.kcPage.type,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  console.log('dispatch to props:');
+  let logger = new Logger();
+
+  logger.log('dispatch to props:');
   return {
     fetch: (user) => {
       dispatch(fetchPages(user));
-    }
-    , register: (user, page) => {
+    },
+    register: (user, page) => {
       dispatch(registerPage(user, page));
-    }
-    , cancel: (user, page) => {
+    },
+    cancel: (user, page) => {
       dispatch(cancelPage(user, page));
     }
   };

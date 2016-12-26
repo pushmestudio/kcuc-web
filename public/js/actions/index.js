@@ -1,4 +1,5 @@
 import SendRequest from '../utils/SendRequest';
+import Logger from '../utils/Logger';
 
 export const startFetchPages = () => {
   return {
@@ -20,6 +21,8 @@ export const errorFetchPages = () => {
 };
 
 export const fetchPages = (userId) => {
+  let logger = new Logger();
+
   return (dispatch) => {
     dispatch(startFetchPages());
 
@@ -28,7 +31,7 @@ export const fetchPages = (userId) => {
     $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendGet(kcucPagesApi, requestPagesParam).then((res) => {
-      console.dir(res);
+      logger.dir(res);
 
       if (res.code) {
         dispatch(errorFetchPages());
@@ -63,6 +66,8 @@ export const errorFetchUsers = () => {
 };
 
 export const fetchUsers = (page) => {
+  let logger = new Logger();
+
   return (dispatch) => {
     dispatch(startFetchUsers());
 
@@ -71,7 +76,7 @@ export const fetchUsers = (page) => {
     $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendGet(kcucUsersApi, requestUsersParam).then((res) => {
-      console.dir(res);
+      logger.dir(res);
       if (res.code) {
         dispatch(errorFetchUsers());
       } else {
@@ -105,6 +110,8 @@ export const errorRegisterPage = () => {
 };
 
 export const registerPage = (user, page) => {
+  let logger = new Logger();
+
   return (dispatch) => {
     dispatch(startRegisterPage());
 
@@ -113,7 +120,7 @@ export const registerPage = (user, page) => {
     $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendPost(kcucUsersApi, requestRegisterParam).then((res) => {
-      console.dir(res);
+      logger.dir(res);
       if (res.code) {
         dispatch(errorRegisterPage());
       } else {
@@ -148,6 +155,8 @@ export const errorCancelPage = () => {
 
 // TODO 現時点で購読解除のAPIはできていないため、パラメーターを送ると購読をするようになっている、APIが出来次第URLを切り替える
 export const cancelPage = (user, page) => {
+  let logger = new Logger();
+
   return (dispatch) => {
     dispatch(startCancelPage());
 
@@ -156,7 +165,7 @@ export const cancelPage = (user, page) => {
     $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendPost(kcucUsersApi, requestCancelParam).then((res) => {
-      console.dir(res);
+      logger.dir(res);
       if (res.code) {
         dispatch(errorCancelPage());
       } else {
