@@ -9,12 +9,12 @@ class Logger {
     this.debug;
     this.trace;
     this.dir;
+    this.debugMode = true; // どこか別の箇所から値を読ませる仕組みが必要
     this.init();
   }
 
   init() {
-    const DEBUG_MODE = true;
-    if (DEBUG_MODE) {
+    if (this.debugMode) {
       let agent = navigator.userAgent; // ユーザエージェント取得
       if(agent.search('MSIE') != -1) { // IEの場合
         if(!window.console) { // 古いIEの場合、F12コンソールを開いていない状態ではconsole.logはエラーになるため、回避策

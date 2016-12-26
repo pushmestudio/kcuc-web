@@ -2,10 +2,16 @@
 
 const express = require('express');
 const request = require('request-promise');
-const config = require('config');
 const app = express();
 
-const target = config.get('api.protocol') + '://' + config.get('api.host') + ':' + config.get('api.port') + '/kcuc/rest-v1';
+require('dotenv').config({silent: true}); // もしなかったとしてもエラーを出さない
+const apiProtocol = process.env.API_PROTOCOL;
+const apiHost = process.env.API_HOST;
+const apiPort = process.env.API_PORT;
+const clientPort = process.env.CLIENT_PORT;
+const debugMode = process.env.DEBUG;
+
+const target = apiProtocol + '://' + apiHost + ':' + apiPort + '/kcuc/rest-v1';
 
 app.use('/kcuc', express.static('public'));
 
@@ -25,8 +31,8 @@ app.use('/kcuc/api', (req, res) => {
   });
 });
 
-app.listen(config.get('client.port'), () => {
+app.listen(clientPort, () => {
   console.log('api request target is ' + target);
-  console.log('debug mode is ' + config.get('debug'));
-  console.log('now listening on the port ' + config.get('client.port'));
+  console.log('debug mode is ' + debugMode);
+  console.log('now listening on the port ' + clientPort);
 });
