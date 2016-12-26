@@ -1,6 +1,6 @@
 # JavaScript Library related
 node_modules/
-.env
+config/personal.json
 
 # JsDoc related
 out/

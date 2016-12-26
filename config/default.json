@@ -3,7 +3,7 @@
     "protocol": "https",
     "host": "kcuc.mybluemix.net",
     "port": 443,
-    "target": "/kcuc/rest-v1"
+    "target": "/rest-v1"
   },
   "debug": true
 }

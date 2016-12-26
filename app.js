@@ -29,7 +29,9 @@ app.use('/api', (req, res) => {
     res.type('application/json');
     res.send(result);
   }).catch(() => {
-    console.error('something goes wrong');
+    console.log('error is occurred on ' + target + path);
+    res.type('application/json');
+    res.send({});
   });
 });
 
