@@ -45,6 +45,6 @@
   "scripts": {
     "lint": "eslint public/js/",
     "build": "eslint public/js/ && webpack && jsdoc -r public/js/*",
-    "start": "node app.js"
+    "start": "node --use_strict app.js"
   }
 }
