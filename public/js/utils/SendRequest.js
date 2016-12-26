@@ -1,13 +1,19 @@
 /**
  * @file リクエスト送信先とパラメータを渡してリクエストを簡易的に送るためのクラス
  */
+
+import Logger from '../utils/Logger';
+
 class SendRequest {
+  constructor() {
+    this.logger = new Logger();
+  }
   /**
   * GETでJSONを取得（非同期）
   */
   static sendGet(uri, param) {
-    console.log('ASYNC GET ' + uri);
-    var $d = $.Deferred();
+    this.logger.log('ASYNC GET ' + uri);
+    let $d = $.Deferred();
     try {
       $.ajax({
         type: 'GET',
@@ -15,11 +21,11 @@ class SendRequest {
         url: uri,
         data: param,
         success: function (data) {
-          console.dir(data);
+          this.logger.dir(data);
           $d.resolve(data);
         },
         error: function (xhr) {
-          console.log(xhr.responseText);
+          this.logger.log(xhr.responseText);
           $d.reject();
         }
       });
@@ -42,11 +48,11 @@ class SendRequest {
         data: param,
         contentType: 'application/x-www-form-urlencoded; charset=utf-8',
         success: function (data) {
-          console.dir(data);
+          this.logger.dir(data);
           $d.resolve(data);
         },
         error: function (xhr) {
-          console.log(xhr.responseText);
+          this.logger.log(xhr.responseText);
           $d.reject();
         }
       });

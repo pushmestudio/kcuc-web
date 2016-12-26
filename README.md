@@ -81,3 +81,11 @@ Webpackについては、JSのエントリーポイントを増やす場合に`w
 2. 使用したいJS上にて`import`で当該ライブラリを読み込み
 
     `{}`付きのimportは、import元(from)から特定のオブジェクトのみをimportするもの。また、`yarn.lock`ファイルは、各開発者間の`node_modules`のバージョン差異をなくすために必要となるものなので、バージョン管理対象とすること。
+
+# その他
+
+- comma-style:
+    現状ではcomma-last styleを採用している。comma-firstの方が新たな行を加えた際に加えた行のみが変更として示される点、通常先頭と末尾だと末尾の方が頻繁に入れ替わるがその際の変更が楽である点、カンマのつけ忘れが防ぎやすい点、NPMでもcomma-firstを採用している点などがあげられる。他方で、comma-lastの方が一般に馴染みがある点、先頭行に追加的なスペースを入れる必要がない点、ESLintのデフォルトスタイルもcomma-lastである点などがあり、comma-firstに倒すには至らず、comma-lastを採用している。
+
+- quotation-mark:
+    現状ではsingle-quotationを採用している。double-quotationの方が一般に(他言語において)馴染みがあり、英文のsingle-quotation(e.g. `it's yours`)がそのまま使用可能である。他方で、single-quotationではHTML要素の操作時に扱いが容易(e.g. `let elem = <div class="myClass"/>`)である点、点の数が減る分可読性が上がる点などがあり、single-quotationを採用している。ただし、HTML要素操作時の利点については、React/ReduxにおいてはJSX形式であるため、クラス名などもJS上で直接操作できることから直接の利点にはならない。(そのためこのプロジェクト上は、可読性が主たる採用理由)
