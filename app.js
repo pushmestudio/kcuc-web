@@ -11,12 +11,13 @@ const appEnv = cfenv.getAppEnv(); // localではlocalhost:8080がデフォルト
 const apiProtocol = config.get('api.protocol');
 const apiHost = config.get('api.host');
 const apiPort = config.get('api.port');
+const apiTarget = config.get('api.target');
 const debugMode = config.get('debug');
-const target = apiProtocol + '://' + apiHost + ':' + apiPort + '/kcuc/rest-v1';
+const target = apiProtocol + '://' + apiHost + ':' + apiPort + apiTarget;
 
-app.use('/kcuc', express.static('public'));
+app.use('/', express.static('public'));
 
-app.use('/kcuc/api', (req, res) => {
+app.use('/api', (req, res) => {
   // reqでとれるプロパティは以下を参照 http://expressjs.com/en/api.html
   console.log(req.path);
   let path = req.path;
