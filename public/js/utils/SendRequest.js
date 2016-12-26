@@ -2,17 +2,11 @@
  * @file リクエスト送信先とパラメータを渡してリクエストを簡易的に送るためのクラス
  */
 
-import Logger from '../utils/Logger';
-
 class SendRequest {
-  constructor() {
-    this.logger = new Logger();
-  }
   /**
-  * GETでJSONを取得（非同期）
-  */
+   * GETでJSONを取得（非同期）
+   */
   static sendGet(uri, param) {
-    this.logger.log('ASYNC GET ' + uri);
     let $d = $.Deferred();
     try {
       $.ajax({
@@ -21,11 +15,9 @@ class SendRequest {
         url: uri,
         data: param,
         success: function (data) {
-          this.logger.dir(data);
           $d.resolve(data);
         },
-        error: function (xhr) {
-          this.logger.log(xhr.responseText);
+        error: function () {
           $d.reject();
         }
       });
@@ -48,11 +40,9 @@ class SendRequest {
         data: param,
         contentType: 'application/x-www-form-urlencoded; charset=utf-8',
         success: function (data) {
-          this.logger.dir(data);
           $d.resolve(data);
         },
-        error: function (xhr) {
-          this.logger.log(xhr.responseText);
+        error: function () {
           $d.reject();
         }
       });

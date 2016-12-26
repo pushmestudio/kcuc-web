@@ -37,5 +37,6 @@ module.exports = {
       jQuery: 'jquery',
       $: 'jquery'
     })
-  ]
+  ],
+  node: {fs: 'empty'}
 };

@@ -4,7 +4,8 @@
     "browser": true,
     "es6": true,
     "commonjs": true,
-    "jquery": true
+    "jquery": true,
+    "node": true
   },
   "parserOptions": {
     "ecmaFeatures" : {
