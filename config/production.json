@@ -1,0 +1,8 @@
+{
+  "api": {
+    "protocol": "https",
+    "host": "kcuc.mybluemix.net",
+    "port": 443
+  },
+  "debug": true
+}
