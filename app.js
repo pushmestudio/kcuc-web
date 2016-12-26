@@ -34,7 +34,7 @@ app.use('/kcuc/api', (req, res) => {
 let cfenv = require('cfenv');
 
 // get the app environment from Cloud Foundry
-var appEnv = cfenv.getAppEnv();
+const appEnv = cfenv.getAppEnv();
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {

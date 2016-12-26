@@ -1,4 +1,4 @@
-const kcPage = (state = {
+let kcPage = (state = {
   pages: []
   , headings: [' ', 'URL', 'Flag', 'Note']
   , title: 'Page List'
