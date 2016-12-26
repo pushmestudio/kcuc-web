@@ -2,15 +2,16 @@
 
 const express = require('express');
 const request = require('request-promise');
+const config = require('config');
+const cfenv = require('cfenv');
+
 const app = express();
+const appEnv = cfenv.getAppEnv(); // localではlocalhost:8080がデフォルト
 
-require('dotenv').config({silent: true}); // もしなかったとしてもエラーを出さない
-const apiProtocol = process.env.API_PROTOCOL;
-const apiHost = process.env.API_HOST;
-const apiPort = process.env.API_PORT;
-const clientPort = process.env.CLIENT_PORT;
-const debugMode = process.env.DEBUG;
-
+const apiProtocol = config.get('api.protocol');
+const apiHost = config.get('api.host');
+const apiPort = config.get('api.port');
+const debugMode = config.get('debug');
 const target = apiProtocol + '://' + apiHost + ':' + apiPort + '/kcuc/rest-v1';
 
 app.use('/kcuc', express.static('public'));
@@ -27,14 +28,9 @@ app.use('/kcuc/api', (req, res) => {
     res.type('application/json');
     res.send(result);
   }).catch(() => {
-    console.log('something goes wrong');
+    console.error('something goes wrong');
   });
 });
-
-let cfenv = require('cfenv');
-
-// get the app environment from Cloud Foundry
-const appEnv = cfenv.getAppEnv();
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
