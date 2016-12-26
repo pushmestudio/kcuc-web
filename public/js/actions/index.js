@@ -27,7 +27,7 @@ export const fetchPages = (userId) => {
     dispatch(startFetchPages());
 
     let requestPagesParam = {user: userId};
-    const kcucPagesApi = '/api/check/pages';
+    const kcucPagesApi = '/kcuc/api/check/pages';
     $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendGet(kcucPagesApi, requestPagesParam).then((res) => {
@@ -72,7 +72,7 @@ export const fetchUsers = (page) => {
     dispatch(startFetchUsers());
 
     let requestUsersParam = {href: page};
-    const kcucUsersApi = '/api/check/users';
+    const kcucUsersApi = '/kcuc/api/check/users';
     $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendGet(kcucUsersApi, requestUsersParam).then((res) => {
@@ -116,7 +116,7 @@ export const registerPage = (user, page) => {
     dispatch(startRegisterPage());
 
     let requestRegisterParam = {user: user, href: page};
-    const kcucUsersApi = '/api/check/pages';
+    const kcucUsersApi = '/kcuc/api/check/pages';
     $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendPost(kcucUsersApi, requestRegisterParam).then((res) => {
@@ -161,7 +161,7 @@ export const cancelPage = (user, page) => {
     dispatch(startCancelPage());
 
     let requestCancelParam = {user: user, href: page};
-    const kcucUsersApi = '/api/check/pages';
+    const kcucUsersApi = '/kcuc/api/check/pages';
     $('#loader').removeClass('hidden'); // ローディングアイコン表示
 
     SendRequest.sendPost(kcucUsersApi, requestCancelParam).then((res) => {
