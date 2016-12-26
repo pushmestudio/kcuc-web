@@ -1,5 +1,7 @@
-let path = require('path');
-let webpack = require('webpack');
+/* eslint-disable no-undef */
+
+path = require('path');
+webpack = require('webpack');
 
 module.exports = {
   entry: {
