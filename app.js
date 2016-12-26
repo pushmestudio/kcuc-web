@@ -31,8 +31,14 @@ app.use('/kcuc/api', (req, res) => {
   });
 });
 
-app.listen(3000, '0.0.0.0', () => {
+let cfenv = require('cfenv');
+
+// get the app environment from Cloud Foundry
+var appEnv = cfenv.getAppEnv();
+
+// start server on the specified port and binding host
+app.listen(appEnv.port, '0.0.0.0', function() {
   console.log('api request target is ' + target);
   console.log('debug mode is ' + debugMode);
-  console.log('now listening on the port ' + 3000);
+  console.log('server starting on ' + appEnv.url);
 });
