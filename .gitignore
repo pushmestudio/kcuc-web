@@ -1,5 +1,6 @@
 # JavaScript Library related
 node_modules/
+config/personal.json
 
 # JsDoc related
 out/
@@ -10,7 +11,6 @@ build/
 # Backup / Temporaly related
 *.swp
 *.bak
-config/dev.json
 
 # Mac user related
 .DS_Store

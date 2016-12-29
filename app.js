@@ -1,14 +1,23 @@
+/* eslint-disable no-console */
+
 const express = require('express');
 const request = require('request-promise');
 const config = require('config');
+const cfenv = require('cfenv');
+
 const app = express();
+const appEnv = cfenv.getAppEnv(); // localではlocalhost:8080がデフォルト
 
-const target = config.get('protocol') + '://' + config.get('host') + ':' + config.get('port') + '/kcuc/rest-v1';
-console.log(target);
+const apiProtocol = config.get('api.protocol');
+const apiHost = config.get('api.host');
+const apiPort = config.get('api.port');
+const apiTarget = config.get('api.target');
+const debugMode = config.get('debug');
+const target = apiProtocol + '://' + apiHost + ':' + apiPort + apiTarget;
 
-app.use('/kcuc', express.static('public'));
+app.use('/', express.static('public'));
 
-app.use('/kcuc/api', (req, res) => {
+app.use('/api', (req, res) => {
   // reqでとれるプロパティは以下を参照 http://expressjs.com/en/api.html
   console.log(req.path);
   let path = req.path;
@@ -20,10 +29,15 @@ app.use('/kcuc/api', (req, res) => {
     res.type('application/json');
     res.send(result);
   }).catch(() => {
-    console.log('something goes wrong');
+    console.log('error is occurred on ' + target + path);
+    res.type('application/json');
+    res.send({});
   });
 });
 
-app.listen(3000, () => {
-  console.log('now listening on the port 3000');
+// start server on the specified port and binding host
+app.listen(appEnv.port, '0.0.0.0', function() {
+  console.log('api request target is ' + target);
+  console.log('debug mode is ' + debugMode);
+  console.log('server starting on ' + appEnv.url);
 });

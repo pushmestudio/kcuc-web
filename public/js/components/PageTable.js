@@ -1,16 +1,18 @@
 import React from 'react';
 import Headings from './Headings';
 import Rows from './Rows';
+import Logger from '../utils/Logger';
 
 class PageTable extends React.Component {
   constructor(props) {
     // super()を呼び、値を渡すことで、初期化時に渡したプロパティがこのクラスのprops.xxxとして使えるようになる
     super(props);
+    this.logger = new Logger();
   }
 
   render() {
-    console.log('PageTable is rendered');
-    console.dir(this.props);
+    this.logger.log('PageTable is rendered');
+    this.logger.dir(this.props);
     return <div>
       <h2>{this.props.title}</h2>
       <h3>Subscribe Page</h3>

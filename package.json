@@ -12,6 +12,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "cfenv": "^1.0.3",
     "config": "^1.24.0",
     "express": "^4.14.0",
     "jquery": "^3.1.1",
@@ -44,6 +45,6 @@
   "scripts": {
     "lint": "eslint public/js/",
     "build": "eslint public/js/ && webpack && jsdoc -r public/js/*",
-    "start": "webpack-dev-server --progress --color --hot --inline --host 0.0.0.0 --content-base public/"
+    "start": "node --use_strict app.js"
   }
 }
