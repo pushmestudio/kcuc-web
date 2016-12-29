@@ -47,10 +47,12 @@ class PageTable extends React.Component {
         </span>
       </div>
       <h3>Search Result</h3>
-      <table className='table table-bordered'>
-        <Headings headings={this.props.headings} />
-        <Rows dataSet={this.props.results} type={this.props.type} />
-      </table>
+      <div className="table-responsive">
+        <table className='table table-bordered'>
+          <Headings headings={this.props.headings} />
+          <Rows dataSet={this.props.results} type={this.props.type} />
+        </table>
+      </div>
     </div>;
   }
 }
