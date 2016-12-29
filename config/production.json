@@ -5,5 +5,5 @@
     "port": 443,
     "target": "/rest-v1"
   },
-  "debug": true
+  "debug": false
 }
