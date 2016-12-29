@@ -1,4 +1,4 @@
-const kcUser = (state = {
+let kcUser = (state = {
   users: []
   , headings: [' ', 'ID', 'Flag']
   , title: 'User List'

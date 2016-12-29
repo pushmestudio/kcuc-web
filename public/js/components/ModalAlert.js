@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Logger from '../utils/Logger';
 
 // App component, Headings/Rows componentを呼び出し
 class ModalAlert extends React.Component {
   constructor(props) {
     super(props);
+    this.logger = new Logger();
   }
 
   render() {
@@ -26,7 +28,7 @@ class ModalAlert extends React.Component {
   }
 
   componentDidMount(){
-    console.log('did mount');
+    this.logger.log('did mount');
     setTimeout(()=> {
       let timeoutModal = ReactDOM.findDOMNode(this.refs.timeoutModal);
       $(timeoutModal).modal('show');

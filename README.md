@@ -1,18 +1,17 @@
 # クライアントサイドセットアップ
 
-* Requirement: Yarn導入, NodeJS導入
-* Recommendation: Atom + パッケージ2種(linter by atom-community, linter-eslint by AtomLinter)
+* Requirement: NodeJS導入
+* Recommendation: Yarn導入, Atom + パッケージ2種(linter by atom-community, linter-eslint by AtomLinter)
 
-`webapp`ディレクトリにて`yarn install`。
+`webapp`ディレクトリにて`yarn install`(Yarn未導入環境では`npm install`)。
 現時点では次のコマンドを用意している。
 
-- `yarn build`：文法チェック＆JavaScriptのビルド・依存性解決＆JsDocの出力
-- `yarn lint`：JavaScript文法チェック
-- `yarn webpack`：JavaScriptのビルドのみ(文法チェックを割愛、開発時のみの想定)
-- `node app.js`：ローカルサーバー起動
+- `yarn build`(or `npm run build`)：文法チェック＆JavaScriptのビルド・依存性解決＆JsDocの出力
+- `yarn lint`(or `npm run lint`)：JavaScript文法チェック
+- `yarn webpack`(or `npm run webpack`)：JavaScriptのビルドのみ(文法チェックを割愛、開発時のみの想定)
+- `yarn start`(or `npm run start`)：ローカルサーバー起動
 
-環境切り替えには`node-config`を使用している。configディレクトリ以下にある`default.json`の値を読めるようにしているが、`export NODE_ENV=dev; node app.js`のようにすると代わりに`dev.json`に書いた内容を読み込むようになるので、この方法によって環境を切り替えること。なお、`config/dev.json`はトラッキング対象外にしているので、個人の環境の内容などを記載して使用してOK。
-
+環境切り替えには`node-config`を使用している。configディレクトリ以下にある`default.json`の値を読めるようにしているが、`export NODE_ENV=production; yarn start`のようにすると代わりに`production.json`に書いた内容を読み込むようになるので、この方法によって環境を切り替えること。なお、個人の環境の内容を記載する場合は、`.gitignore`に`config/personal.json`とした上で`export NODE_ENV=personal; yarn start`すればOK。
 
 ## Yarnについて
 ### Yarnでできること(vs npm)
@@ -81,3 +80,17 @@ Webpackについては、JSのエントリーポイントを増やす場合に`w
 2. 使用したいJS上にて`import`で当該ライブラリを読み込み
 
     `{}`付きのimportは、import元(from)から特定のオブジェクトのみをimportするもの。また、`yarn.lock`ファイルは、各開発者間の`node_modules`のバージョン差異をなくすために必要となるものなので、バージョン管理対象とすること。
+
+# その他
+
+- comma-style:
+    現状ではcomma-last styleを採用している。comma-firstの方が新たな行を加えた際に加えた行のみが変更として示される点、通常先頭と末尾だと末尾の方が頻繁に入れ替わるがその際の変更が楽である点、カンマのつけ忘れが防ぎやすい点、NPMでもcomma-firstを採用している点などがあげられる。他方で、comma-lastの方が一般に馴染みがある点、先頭行に追加的なスペースを入れる必要がない点、ESLintのデフォルトスタイルもcomma-lastである点などがあり、comma-firstに倒すには至らず、comma-lastを採用している。
+
+- quotation-mark:
+    現状ではsingle-quotationを採用している。double-quotationの方が一般に(他言語において)馴染みがあり、英文のsingle-quotation(e.g. `it's yours`)がそのまま使用可能である。他方で、single-quotationではHTML要素の操作時に扱いが容易(e.g. `let elem = <div class="myClass"/>`)である点、点の数が減る分可読性が上がる点などがあり、single-quotationを採用している。ただし、HTML要素操作時の利点については、React/ReduxにおいてはJSX形式であるため、クラス名などもJS上で直接操作できることから直接の利点にはならない。(そのためこのプロジェクト上は、可読性が主たる採用理由)
+
+- 環境変数の利用:
+    現状では[node-config](https://www.npmjs.com/package/config)を採用している。採用候補となっていたのは他に[dotenv](https://www.npmjs.com/package/dotenv)があった。一方が明らかに優れているということはないが、ローカルとリモートでファイルを切り替えることを前提にした場合、node-configにおいては、`export NODE_ENV=production;`のような措置をとることになるが、Bluemixでは当該処理が自動的に実施されるためいくらかそのやり方の方が望ましいという判断から採用に至っている。
+
+- ロギングモジュール:
+    現状ではクラス化した上で各利用モジュールにおいて読み込み使用、リリース時にログを出力しないような設定の切り替えはファイルの一部を書き換えることによる方法となってしまっている。この方法は望ましくはないので、可能であれば環境変数を利用するなどで簡易的に切り替えができると良い。なお、単にdotenvやnode-configを利用する方法ではうまくいかなかったので注意。

@@ -1,13 +1,13 @@
 /**
  * @file リクエスト送信先とパラメータを渡してリクエストを簡易的に送るためのクラス
  */
+
 class SendRequest {
   /**
-  * GETでJSONを取得（非同期）
-  */
+   * GETでJSONを取得（非同期）
+   */
   static sendGet(uri, param) {
-    console.log('ASYNC GET ' + uri);
-    var $d = $.Deferred();
+    let $d = $.Deferred();
     try {
       $.ajax({
         type: 'GET',
@@ -15,11 +15,9 @@ class SendRequest {
         url: uri,
         data: param,
         success: function (data) {
-          console.dir(data);
           $d.resolve(data);
         },
-        error: function (xhr) {
-          console.log(xhr.responseText);
+        error: function () {
           $d.reject();
         }
       });
@@ -42,11 +40,9 @@ class SendRequest {
         data: param,
         contentType: 'application/x-www-form-urlencoded; charset=utf-8',
         success: function (data) {
-          console.dir(data);
           $d.resolve(data);
         },
-        error: function (xhr) {
-          console.log(xhr.responseText);
+        error: function () {
           $d.reject();
         }
       });
