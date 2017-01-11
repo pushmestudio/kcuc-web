@@ -1,6 +1,12 @@
 import SendRequest from '../utils/SendRequest';
 import Logger from '../utils/Logger';
 
+/**
+ * アクションクリエイター、各関数でアクションを返す
+ * @module actions/index
+ * @see Logger
+ */
+
 export const startFetchPages = () => {
   return {
     type: 'START_FETCH_PAGES'
@@ -20,6 +26,7 @@ export const errorFetchPages = () => {
   };
 };
 
+/** ユーザーIDをキーに、ページを取得する */
 export const fetchPages = (userId) => {
   let logger = new Logger();
 
@@ -65,6 +72,7 @@ export const errorFetchUsers = () => {
   };
 };
 
+/** ページをキーに、購読ユーザーを取得する */
 export const fetchUsers = (page) => {
   let logger = new Logger();
 
@@ -109,6 +117,7 @@ export const errorRegisterPage = () => {
   };
 };
 
+/** ユーザーとページを使って、ページを対象ユーザーの購読一覧に追加する */
 export const registerPage = (user, page) => {
   let logger = new Logger();
 
@@ -153,7 +162,10 @@ export const errorCancelPage = () => {
   };
 };
 
-// TODO 現時点で購読解除のAPIはできていないため、パラメーターを送ると購読をするようになっている、APIが出来次第URLを切り替える
+/**
+ * ユーザーとページを使って、ページを対象ユーザーの購読一覧から取り除く
+ * @todo 現時点で購読解除のAPIはできていないため、パラメーターを送ると購読をするようになっている、APIが出来次第URLを切り替える
+ */
 export const cancelPage = (user, page) => {
   let logger = new Logger();
 

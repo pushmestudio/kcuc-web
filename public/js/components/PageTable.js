@@ -3,6 +3,12 @@ import Headings from './Headings';
 import Rows from './Rows';
 import Logger from '../utils/Logger';
 
+/**
+ * ページ情報を扱うテーブル, PageContainerからPropsを受け取る
+ * @see Headings
+ * @see Rows
+ * @see Logger
+ */
 class PageTable extends React.Component {
   constructor(props) {
     // super()を呼び、値を渡すことで、初期化時に渡したプロパティがこのクラスのprops.xxxとして使えるようになる
@@ -10,6 +16,7 @@ class PageTable extends React.Component {
     this.logger = new Logger();
   }
 
+  /** 検索フォームとテーブルにしたページ情報を返す */
   render() {
     this.logger.log('PageTable is rendered');
     this.logger.dir(this.props);
