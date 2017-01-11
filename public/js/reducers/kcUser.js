@@ -5,10 +5,10 @@
  */
 
 let kcUser = (state = {
-  users: []
-  , headings: [' ', 'ID', 'Flag']
-  , title: 'User List'
-  , type: 'users'
+  users: [],
+  headings: [' ', 'ID', 'Flag'],
+  title: 'User List',
+  type: 'users'
 }, action) => {
   switch (action.type) {
   case 'START_FETCH_USERS':

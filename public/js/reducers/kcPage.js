@@ -7,10 +7,10 @@
  */
 
 let kcPage = (state = {
-  pages: []
-  , headings: [' ', 'URL', 'Flag', 'Note']
-  , title: 'Page List'
-  , type: 'pages'
+  pages: [],
+  headings: [' ', 'URL', 'Flag', 'Note'],
+  title: 'Page List',
+  type: 'pages'
 }, action) => {
   switch (action.type) {
   case 'START_FETCH_PAGES':
