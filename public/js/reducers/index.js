@@ -10,8 +10,8 @@ import kcPage from './kcPage';
  */
 
 const rootReducer = combineReducers({
-  kcUser
-  , kcPage
+  kcUser,
+  kcPage
 });
 
 export default rootReducer;

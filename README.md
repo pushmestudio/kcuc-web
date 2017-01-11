@@ -129,6 +129,9 @@ const createStoreWithMiddleware = applyMiddleware(
 - quotation-mark:
     現状ではsingle-quotationを採用している。double-quotationの方が一般に(他言語において)馴染みがあり、英文のsingle-quotation(e.g. `it's yours`)がそのまま使用可能である。他方で、single-quotationではHTML要素の操作時に扱いが容易(e.g. `let elem = <div class="myClass"/>`)である点、点の数が減る分可読性が上がる点などがあり、single-quotationを採用している。ただし、HTML要素操作時の利点については、React/ReduxにおいてはJSX形式であるため、クラス名などもJS上で直接操作できることから直接の利点にはならない。(そのためこのプロジェクト上は、可読性が主たる採用理由)
 
+- REST APIとの関係性:
+    現状ではREST APIとの関係性については、`REST <--> app.js <--> Public以下のクライアントサイド`としている。即ち、app.jsにて実際にリクエストすべきREST APIとアクセスされたURLとを紐付け、クライアントサイドはapp.jsが構えている`/api`以下のURLとの紐付けとしている。こうすることで、REST APIに変更が生じても、その差分をapp.js内で吸収することにより、クライアントサイドへの影響をなくすことができる。
+
 - 環境変数の利用:
     現状では[node-config](https://www.npmjs.com/package/config)を採用している。採用候補となっていたのは他に[dotenv](https://www.npmjs.com/package/dotenv)があった。一方が明らかに優れているということはないが、ローカルとリモートでファイルを切り替えることを前提にした場合、node-configにおいては、`export NODE_ENV=production;`のような措置をとることになるが、Bluemixでは当該処理が自動的に実施されるためいくらかそのやり方の方が望ましいという判断から採用に至っている。
 
