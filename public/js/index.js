@@ -1,12 +1,15 @@
-/**
- * @file エントリーポイント, Appを呼び出す
- */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './components/App';
 import kcStore from './store/kcStore';
+
+/**
+ * エントリーポイント, Appを呼び出す
+ * @module index
+ * @see App
+ * @see module:store/kcStore
+ */
 
 // bootstrapはes6 importには対応していないのでrequireする
 require('bootstrap');

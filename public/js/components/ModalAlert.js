@@ -2,13 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Logger from '../utils/Logger';
 
-// App component, Headings/Rows componentを呼び出し
+/**
+ * ModalAlert component, モーダルを表示するお試し
+ * @see Logger
+ */
 class ModalAlert extends React.Component {
   constructor(props) {
     super(props);
     this.logger = new Logger();
   }
 
+  /** 警告用モーダルを返す */
   render() {
     return (
       <div className="modal fade" ref='timeoutModal'>
@@ -27,12 +31,13 @@ class ModalAlert extends React.Component {
     );
   }
 
+  /** componentがマウントされたらモーダルを呼び出す, VirtualDOM更新後モーダルを呼ぶため、100msのタイムアウトをset */
   componentDidMount(){
     this.logger.log('did mount');
     setTimeout(()=> {
       let timeoutModal = ReactDOM.findDOMNode(this.refs.timeoutModal);
       $(timeoutModal).modal('show');
-    }, 100); // VirtualDOM更新後モーダルを呼ぶため、100msのタイムアウトをset
+    }, 100);
   }
 }
 

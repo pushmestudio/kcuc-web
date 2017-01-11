@@ -1,8 +1,16 @@
+/**
+ * ページ情報を取り扱うReducer, 次のアクションを受け取る
+ * <pre><code>START_FETCH_PAGES, START_REG_PAGE, START_CANCEL_PAGE
+ * SUCCESS_FETCH_PAGES, SUCCESS_REG_PAGE, SUCCESS_CANCEL_PAGE
+ * ERROR_FETCH_PAGES, ERROR_REG_PAGE, ERROR_CANCEL_PAGE</code></pre>
+ * @module reducers/kcPage
+ */
+
 let kcPage = (state = {
-  pages: []
-  , headings: [' ', 'URL', 'Flag', 'Note']
-  , title: 'Page List'
-  , type: 'pages'
+  pages: [],
+  headings: [' ', 'URL', 'Flag', 'Note'],
+  title: 'Page List',
+  type: 'pages'
 }, action) => {
   switch (action.type) {
   case 'START_FETCH_PAGES':
