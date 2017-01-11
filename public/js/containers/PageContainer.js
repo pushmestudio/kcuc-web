@@ -3,6 +3,14 @@ import { fetchPages, registerPage, cancelPage } from '../actions';
 import PageTable from '../components/PageTable';
 import Logger from '../utils/Logger';
 
+/**
+ * ページ情報を持つコンテナ, PageTableにPropsを渡す
+ * @module containers/PageContainer
+ * @see PageTable
+ * @see Logger
+ */
+
+ /** kcPageのStateをプロパティに変換する */
 const mapStateToProps = (state) => {
   let logger = new Logger();
 
@@ -16,6 +24,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+/** アクションをdispatchと共にプロパティに変換する */
 const mapDispatchToProps = (dispatch) => {
   let logger = new Logger();
 

@@ -1,3 +1,9 @@
+/**
+ * ユーザー情報を取り扱うReducer, 次のアクションを受け取る
+ * <pre><code>START_FETCH_USERS, SUCCESS_FETCH_USERS, ERROR_FETCH_USERS</code></pre>
+ * @module reducers/kcUser
+ */
+
 let kcUser = (state = {
   users: []
   , headings: [' ', 'ID', 'Flag']

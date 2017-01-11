@@ -1,10 +1,10 @@
-/**
- * @file リクエスト送信先とパラメータを渡してリクエストを簡易的に送るためのクラス
- */
-
+/** Util リクエスト送信先とパラメータを渡してリクエストを簡易的に送るためのクラス */
 class SendRequest {
   /**
    * GETでJSONを取得（非同期）
+   * @param {string} uri リクエスト送信先のURI
+   * @param {string} param 送信するパラメーター
+   * @return {Promise<object>} data リクエスト結果
    */
   static sendGet(uri, param) {
     let $d = $.Deferred();
@@ -29,6 +29,9 @@ class SendRequest {
 
   /**
    * POSTでJSONを送信してJSONを取得（非同期）
+   * @param {string} uri リクエスト送信先のURI
+   * @param {string} param 送信するパラメーター, フォーム扱い
+   * @return {Promise<object>} data リクエスト結果
    */
   static sendPost(uri, param) {
     let $d = $.Deferred();
