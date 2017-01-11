@@ -1,7 +1,4 @@
-/**
- * @file DEBUG_MODEがtrueの際にのみログを出力するためのモジュール
- */
-
+/** Util DEBUG_MODEがtrueの際にのみログを出力するためのモジュール */
 class Logger {
   /* eslint-disable no-console */
   constructor() {
@@ -13,6 +10,9 @@ class Logger {
     this.init();
   }
 
+  /**
+   * 初期化、デバッグモードのON/OFFに合わせて関数を置き換える
+   */
   init() {
     if (this.debugMode) {
       let agent = navigator.userAgent; // ユーザエージェント取得

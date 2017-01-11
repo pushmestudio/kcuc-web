@@ -2,6 +2,12 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from '../reducers/index';
 
+/**
+ * アプリ全体の設定取りまとめ
+ * @module store/kcStore
+ * @see module:reducers/index
+ */
+
 const createStoreWithMiddleware = applyMiddleware(
   thunk
 )(createStore);

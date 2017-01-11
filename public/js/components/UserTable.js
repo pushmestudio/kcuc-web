@@ -3,6 +3,12 @@ import Headings from './Headings';
 import Rows from './Rows';
 import Logger from '../utils/Logger';
 
+/**
+ * ユーザー情報を扱うテーブル, UserContainerからPropsを受け取る
+ * @see Headings
+ * @see Rows
+ * @see Logger
+ */
 class UserTable extends React.Component {
   constructor(props) {
     // super()を呼び、値を渡すことで、初期化時に渡したプロパティがこのクラスのprops.xxxとして使えるようになる
@@ -10,6 +16,7 @@ class UserTable extends React.Component {
     this.logger = new Logger();
   }
 
+  /** 検索フォームとテーブルにしたユーザー情報を返す */
   render() {
     this.logger.log('UserTable is rendered');
     this.logger.dir(this.props);

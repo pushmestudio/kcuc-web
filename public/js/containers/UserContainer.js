@@ -3,6 +3,14 @@ import { fetchUsers } from '../actions';
 import UserTable from '../components/UserTable';
 import Logger from '../utils/Logger';
 
+/**
+ * ユーザー情報を持つコンテナ, UserTableにPropsを渡す
+ * @module containers/UserContainer
+ * @see UserTable
+ * @see Logger
+ */
+
+ /** kcUserのStateをプロパティに変換する */
 const mapStateToProps = (state) => {
   let logger = new Logger();
 
@@ -16,6 +24,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+/** アクションをdispatchと共にプロパティに変換する */
 const mapDispatchToProps = (dispatch) => {
   let logger = new Logger();
 

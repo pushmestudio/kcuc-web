@@ -81,6 +81,46 @@ Webpackについては、JSのエントリーポイントを増やす場合に`w
 
     `{}`付きのimportは、import元(from)から特定のオブジェクトのみをimportするもの。また、`yarn.lock`ファイルは、各開発者間の`node_modules`のバージョン差異をなくすために必要となるものなので、バージョン管理対象とすること。
 
+# ドキュメント
+## 生成手順
+`yarn build`を実行した際に、`out`ディレクトリ以下に自動生成するようになっている。生成後の`index.html`を開けば、サイドバーにモジュールやクラスが表示されているのでそれぞれ確認する。
+
+## 記載手順
+クラスとモジュールで若干書き方が異なる点に注意する。すべての関数に無理にJSDocを記載する必要はないので、必要な範囲で記載すること。また、記載にあたっては、JSDocに出力される内容だけで大まかな内容がわかるような記載にすること。(ソースを見れば何がimportされているかはわかるが、JSDoc常には表示されないので`@see`を付ける、など)
+
+クラスの場合には次のように、クラス宣言の直前行に付ける形で記載する。`@see`にて参照する際は、クラス名のみで良い。
+
+```JavaScript
+import Row from './Row';
+import Logger from '../utils/Logger';
+
+/**
+ * Rows component, 渡されたデータの数だけRow componentを呼び出し
+ * @extends React.Component
+ * @see Row
+ * @see Logger
+ */
+class Rows extends React.Component {
+
+}
+```
+
+他方、モジュールの場合には次のように、`@module`を付けるが、関数等に付ける形での記載は**してはならない**。モジュール名は重複の恐れがあることから、ディレクトリ名を含める形で宣言する。また、`@see`にて参照する際は、`module:`を付けてからモジュール名を記載する。
+
+```JavaScript
+import reducer from '../reducers/index';
+
+/**
+ * アプリ全体の設定取りまとめ
+ * @module store/kcStore
+ * @see module:reducers/index
+ */
+
+const createStoreWithMiddleware = applyMiddleware(
+  thunk
+)(createStore);
+```
+
 # その他
 
 - comma-style:
