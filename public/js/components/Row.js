@@ -27,7 +27,7 @@ class Row extends React.Component {
     } else if (rowType === 'users') {
       return <tr>
       <td><input type='checkbox' ref='checkBox' onChange={(e) => this.handleTick(e)}/></td>
-      <td>{this.props.id}</td>
+      <td>{this.props.userName}</td>
       <td>{String(this.props.isUpdated)}</td>
       </tr>;
     }
