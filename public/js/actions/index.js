@@ -40,7 +40,8 @@ export const fetchPages = (userId) => {
     SendRequest.sendGet(kcucPagesApi, requestPagesParam).then((res) => {
       logger.dir(res);
 
-      if (res.code) {
+      let acceptableCode = [200, 304];
+      if (acceptableCode.indexOf(res.code) === -1) {
         dispatch(errorFetchPages());
       } else {
         dispatch(successFetchPages(res));
@@ -85,7 +86,9 @@ export const fetchUsers = (page) => {
 
     SendRequest.sendGet(kcucUsersApi, requestUsersParam).then((res) => {
       logger.dir(res);
-      if (res.code) {
+
+      let acceptableCode = [200, 304];
+      if (acceptableCode.indexOf(res.code) === -1) {
         dispatch(errorFetchUsers());
       } else {
         dispatch(successFetchUsers(res));
@@ -130,7 +133,9 @@ export const registerPage = (user, page) => {
 
     SendRequest.sendPost(kcucUsersApi, requestRegisterParam).then((res) => {
       logger.dir(res);
-      if (res.code) {
+
+      let acceptableCode = [200, 304];
+      if (acceptableCode.indexOf(res.code) === -1) {
         dispatch(errorRegisterPage());
       } else {
         dispatch(successRegisterPage(res));
@@ -178,7 +183,9 @@ export const cancelPage = (user, page) => {
 
     SendRequest.sendPost(kcucUsersApi, requestCancelParam).then((res) => {
       logger.dir(res);
-      if (res.code) {
+
+      let acceptableCode = [200, 304];
+      if (acceptableCode.indexOf(res.code) === -1) {
         dispatch(errorCancelPage());
       } else {
         dispatch(successCancelPage(res));
