@@ -20,7 +20,7 @@ let kcPage = (state = {
   case 'SUCCESS_FETCH_PAGES':
   case 'SUCCESS_REG_PAGE':
   case 'SUCCESS_CANCEL_PAGE':
-    return Object.assign({}, state, {pages: action.data.pages});
+    return Object.assign({}, state, {pages: action.data.subscribedPages});
   case 'ERROR_FETCH_PAGES':
     alert('An error has occured in fetching pages. Please try it again later.'); // TODO より適切なアナウンス方法に変更
     return state;
