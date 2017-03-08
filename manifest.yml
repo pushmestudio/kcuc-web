@@ -1,0 +1,14 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  name: kcuc-web
+  host: kcuc-web
+  disk_quota: 1024M
+  env:
+    DEBUG: 'false'
+    API_PROTOCOL: https
+    API_HOST: kcuc-web.mybluemix.net
+    API_PORT: '443'
+    CLIENT_PORT: '443'

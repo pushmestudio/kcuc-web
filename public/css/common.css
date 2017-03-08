@@ -1,5 +1,5 @@
 /* (c) 2016 tkhm */
-@charset "utf-8"
+@charset "utf-8";
 
 /* 初期のページ全体の構成設定 */
 body {
@@ -160,7 +160,7 @@ nav li.active a {
   animation: spin 2s linear infinite;
 }
 
-.hide {
+.hidden {
   display: none;
 }
 
