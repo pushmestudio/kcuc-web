@@ -9,6 +9,6 @@ applications:
   env:
     DEBUG: 'false'
     API_PROTOCOL: https
-    API_HOST: kcuc-web.mybluemix.net
+    API_HOST: kcuc.mybluemix.net
     API_PORT: '443'
     CLIENT_PORT: '443'
