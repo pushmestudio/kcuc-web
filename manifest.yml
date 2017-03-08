@@ -6,6 +6,7 @@ applications:
   name: kcuc-web
   host: kcuc-web
   disk_quota: 1024M
+  buildpack: sdk-for-nodejs
   env:
     DEBUG: 'false'
     API_PROTOCOL: https
