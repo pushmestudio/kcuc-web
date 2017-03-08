@@ -5,7 +5,7 @@ applications:
   domain: mybluemix.net
   name: kcuc-web
   host: kcuc-web
-  disk_quota: 1024M
+  disk_quota: 2G
   buildpack: sdk-for-nodejs
   env:
     DEBUG: 'false'
