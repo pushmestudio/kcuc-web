@@ -40,12 +40,12 @@
     "redux-devtools": "^3.3.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
     "lint": "eslint public/js/",
-    "build": "eslint public/js/ && webpack && jsdoc -r public/js/*",
+    "build": "eslint public/js/ && webpack && jsdoc -r public/js/",
     "start": "node --use_strict app.js"
   }
 }
