@@ -7,6 +7,8 @@ applications:
   host: kcuc-web
   disk_quota: 256M
   buildpack: sdk-for-nodejs
+  routes:
+    - route: kcuc-web.mybluemix.net/web
   env:
     DEBUG: 'false'
     API_PROTOCOL: https
