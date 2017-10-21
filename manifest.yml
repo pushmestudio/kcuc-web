@@ -1,11 +1,13 @@
 applications:
 - path: .
+  name: kcuc-web
   memory: 256M
   instances: 1
   disk_quota: 256M
   buildpack: sdk-for-nodejs
   routes:
     - route: kcuc-web.mybluemix.net/web
+  path: ./web/
   env:
     DEBUG: 'false'
     API_PROTOCOL: https
