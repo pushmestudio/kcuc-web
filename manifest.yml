@@ -2,9 +2,6 @@ applications:
 - path: .
   memory: 256M
   instances: 1
-  domain: mybluemix.net
-  name: kcuc-web
-  host: kcuc-web
   disk_quota: 256M
   buildpack: sdk-for-nodejs
   routes:
